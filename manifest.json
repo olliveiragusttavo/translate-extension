@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Translator",
+  "version": "1.0",
+
+  "description": "Simply displays the Google Translate form in the extension's pop-up.",
+
+  "icons": {
+    "48": "assets/icon.png"
+  },
+
+  "action": {
+    "default_title": "Translator",
+    "default_popup": "translate.html",
+    "default_icon": {
+      "48": "assets/icon.png"
+    }
+  },
+
+  "host_permissions": [
+    "https://translate.googleapis.com/*"
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "borderify@mozilla.org",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["translator.js"]
+    }
+  ]
+}
