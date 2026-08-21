@@ -1,0 +1,74 @@
+{
+  "appName": {
+    "message": "Translator"
+  },
+  "appDescription": {
+    "message": "Simply displays the Google Translate form in the extension popup."
+  },
+  "textToTranslate": {
+    "message": "Text to translate"
+  },
+  "textPlaceholder": {
+    "message": "Type or paste text here"
+  },
+  "clear": {
+    "message": "Clear"
+  },
+  "fromLanguage": {
+    "message": "From"
+  },
+  "toLanguage": {
+    "message": "To"
+  },
+  "swapLanguages": {
+    "message": "Swap source and target languages"
+  },
+  "detectLanguage": {
+    "message": "Detect language"
+  },
+  "english": {
+    "message": "English"
+  },
+  "spanish": {
+    "message": "Spanish"
+  },
+  "french": {
+    "message": "French"
+  },
+  "german": {
+    "message": "German"
+  },
+  "italian": {
+    "message": "Italian"
+  },
+  "portuguese": {
+    "message": "Portuguese"
+  },
+  "translate": {
+    "message": "Translate"
+  },
+  "translation": {
+    "message": "Translation"
+  },
+  "copy": {
+    "message": "Copy"
+  },
+  "copiedButton": {
+    "message": "Copied"
+  },
+  "copyFailed": {
+    "message": "Could not copy the translation."
+  },
+  "enterText": {
+    "message": "Enter some text first."
+  },
+  "chooseDifferentLanguages": {
+    "message": "Choose different source and target languages."
+  },
+  "chooseSupportedLanguage": {
+    "message": "Choose a supported language."
+  },
+  "translationFailedConnection": {
+    "message": "Translation failed. Check your internet connection."
+  }
+}

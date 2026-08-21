@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="appName"></title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+    <main class="container p-3">
+
+        <section>
+            <div class="mb-3">
+                <label class="form-label fw-semibold" for="source-text" data-i18n="textToTranslate"></label>
+                <div class="position-relative">
+                    <textarea class="form-control pe-5" id="source-text" data-i18n-placeholder="textPlaceholder"></textarea>
+                    <button class="btn-close position-absolute top-0 end-0 m-2" id="clear-button" type="button" data-i18n-aria-label="clear"></button>
+                </div>
+            </div>
+
+            <div class="row g-2 mb-3 align-items-end">
+                <div class="col">
+                    <label class="form-label fw-semibold" for="source-language" data-i18n="fromLanguage"></label>
+                    <select class="form-select" id="source-language" autocomplete="on">
+                        <option value="auto" data-i18n="detectLanguage"></option>
+                        <option value="en" data-i18n="english"></option>
+                        <option value="es" data-i18n="spanish"></option>
+                        <option value="fr" data-i18n="french"></option>
+                        <option value="de" data-i18n="german"></option>
+                        <option value="it" data-i18n="italian"></option>
+                        <option value="pt" data-i18n="portuguese"></option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <button class="btn btn-link border-0 px-1 py-2" id="swap-languages" type="button"
+                        data-i18n-aria-label="swapLanguages">⇄</button>
+                </div>
+
+                <div class="col">
+                    <label class="form-label fw-semibold" for="target-language" data-i18n="toLanguage"></label>
+                    <select class="form-select" id="target-language" autocomplete="on">
+                        <option value="en" data-i18n="english"></option>
+                        <option value="es" data-i18n="spanish"></option>
+                        <option value="fr" data-i18n="french"></option>
+                        <option value="de" data-i18n="german"></option>
+                        <option value="it" data-i18n="italian"></option>
+                        <option value="pt" data-i18n="portuguese"></option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="text-secondary small mt-2 mb-3" id="status" role="status"></p>
+
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="form-label fw-semibold mb-0" for="result" data-i18n="translation"></label>
+                <button class="btn btn-outline-secondary btn-sm" id="copy-button" type="button" data-i18n="copy" disabled></button>
+            </div>
+            <div class="result-box rounded-2 p-3" id="result"></div>
+        </section>
+    </main>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

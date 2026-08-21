@@ -1,0 +1,31 @@
+body {
+    width: 360px;
+    box-sizing: border-box;
+}
+
+@keyframes translation-border-pulse {
+
+    0%,
+    100% {
+        border-color: var(--bs-border-color);
+    }
+
+    50% {
+        border-color: var(--bs-primary);
+    }
+}
+
+#result {
+    border: 1px solid var(--bs-border-color);
+}
+
+#result.translation-loading {
+    animation: translation-border-pulse 1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #result.translation-loading {
+        animation: none;
+        border-color: var(--bs-primary) !important;
+    }
+}

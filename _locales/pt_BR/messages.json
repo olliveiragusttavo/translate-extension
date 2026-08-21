@@ -1,0 +1,74 @@
+{
+  "appName": {
+    "message": "Tradutor"
+  },
+  "appDescription": {
+    "message": "Exibe o formulário do Google Tradutor no pop-up da extensão."
+  },
+  "textToTranslate": {
+    "message": "Texto para traduzir"
+  },
+  "textPlaceholder": {
+    "message": "Digite ou cole o texto aqui"
+  },
+  "clear": {
+    "message": "Limpar"
+  },
+  "fromLanguage": {
+    "message": "De"
+  },
+  "toLanguage": {
+    "message": "Para"
+  },
+  "swapLanguages": {
+    "message": "Trocar idiomas de origem e destino"
+  },
+  "detectLanguage": {
+    "message": "Detectar idioma"
+  },
+  "english": {
+    "message": "Inglês"
+  },
+  "spanish": {
+    "message": "Espanhol"
+  },
+  "french": {
+    "message": "Francês"
+  },
+  "german": {
+    "message": "Alemão"
+  },
+  "italian": {
+    "message": "Italiano"
+  },
+  "portuguese": {
+    "message": "Português"
+  },
+  "translate": {
+    "message": "Traduzir"
+  },
+  "translation": {
+    "message": "Tradução"
+  },
+  "copy": {
+    "message": "Copiar"
+  },
+  "copiedButton": {
+    "message": "Copiado"
+  },
+  "copyFailed": {
+    "message": "Não foi possível copiar a tradução."
+  },
+  "enterText": {
+    "message": "Digite algum texto primeiro."
+  },
+  "chooseDifferentLanguages": {
+    "message": "Escolha idiomas de origem e destino diferentes."
+  },
+  "chooseSupportedLanguage": {
+    "message": "Escolha um idioma compatível."
+  },
+  "translationFailedConnection": {
+    "message": "Falha na tradução. Verifique sua conexão com a internet."
+  }
+}
