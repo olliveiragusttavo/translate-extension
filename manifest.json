@@ -1,17 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "__MSG_appName__",
+  "name": "Simple popup translator API",
   "version": "1.0.0",
   "default_locale": "en",
 
-  "description": "__MSG_appDescription__",
+  "description": "Simply displays the Google Translate form in the extension popup.",
 
   "icons": {
     "48": "assets/icon.png"
   },
 
   "action": {
-    "default_title": "__MSG_appName__",
+    "default_title": "Simple popup translator API",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "48": "assets/icon.png"
@@ -28,7 +28,7 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "borderify@mozilla.org",
+      "id": "translatorextension@olliveiragusttavo.dev",
       "data_collection_permissions": {
         "required": ["none"]
       }
@@ -38,7 +38,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.mozilla.org/*"],
-      "js": ["translator.js"]
+      "js": ["popup/popup.js"]
     }
   ]
 }

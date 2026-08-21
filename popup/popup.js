@@ -333,14 +333,6 @@ class App {
             return;
         }
 
-        if (sourceCode === 'auto' || targetCode === 'auto') {
-            this.result.textContent = '';
-            this.result.classList.remove('translation-loading');
-            this.copyButton.disabled = true;
-            this.statusLabel.textContent = '';
-            return;
-        }
-
         if (!sourceCode || !targetCode || sourceCode === targetCode) {
             this.result.textContent = '';
             this.result.classList.remove('translation-loading');

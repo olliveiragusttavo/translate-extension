@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Translator"
+    "message": "Simple popup translator API"
   },
   "appDescription": {
     "message": "Simply displays the Google Translate form in the extension popup."
