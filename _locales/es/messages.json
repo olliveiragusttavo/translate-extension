@@ -3,7 +3,7 @@
     "message": "Traductor"
   },
   "appDescription": {
-    "message": "Muestra el formulario de Google Translate en la ventana emergente de la extensión."
+    "message": "Muestra el formulario de MyMemory Translate en la ventana emergente de la extensión."
   },
   "textToTranslate": {
     "message": "Texto para traducir"
@@ -70,5 +70,20 @@
   },
   "translationFailedConnection": {
     "message": "La traducción falló. Comprueba tu conexión a internet."
+  },
+  "translationQuotaExceeded": {
+    "message": "Se alcanzó el límite diario gratuito de traducción. Inténtalo de nuevo mañana."
+  },
+  "dailyUsageLabel": {
+    "message": "Cuota diaria estimada usada"
+  },
+  "dailyUsageForecastNote": {
+    "message": "Es solo una estimación, no el valor exacto del proveedor."
+  },
+  "supportLabel": {
+    "message": "Apoya a:"
+  },
+  "supportMyMemoryLink": {
+    "message": "MyMemory"
   }
 }

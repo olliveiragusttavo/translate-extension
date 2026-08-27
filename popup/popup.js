@@ -19,6 +19,15 @@ const TRANSLATION_STORAGE_KEYS = {
     response: 'translator-last-translation'
 };
 
+const USAGE_STORAGE_KEYS = {
+    date: 'translator-usage-date',
+    chars: 'translator-usage-chars'
+};
+
+// MyMemory's anonymous (no email/key) free tier allows ~5000 chars/day per IP.
+// The quota is tracked server-side per IP, not per browser, so this is only a local estimate.
+const MYMEMORY_DAILY_CHAR_LIMIT = 5000;
+
 const TRANSLATION_DELAY = 1000;
 const COPY_FEEDBACK_DELAY = 1000;
 
@@ -35,6 +44,9 @@ class App {
         this.copyButton = document.getElementById('copy-button');
         this.result = document.getElementById('result');
         this.statusLabel = document.getElementById('status');
+        this.usageBar = document.getElementById('usage-bar');
+        this.usageBarFill = document.getElementById('usage-bar-fill');
+        this.usagePercentage = document.getElementById('usage-percentage');
         this.translationTimeout = null;
         this.copyResetTimeout = null;
 
@@ -50,6 +62,7 @@ class App {
         this.setUpTheme();
         this.setUpLanguage();
         this.restoreLastTranslation();
+        this.updateUsageDisplay();
         this.bindEvents();
     }
 
@@ -318,6 +331,59 @@ class App {
     }
 
     /**
+     * Read today's tracked character usage, resetting when the date has rolled over.
+     * @returns {number} Characters used today, as a local estimate.
+     */
+    getUsedChars() {
+        const today = new Date().toISOString().slice(0, 10);
+        const storedDate = localStorage.getItem(USAGE_STORAGE_KEYS.date);
+
+        if (storedDate !== today) {
+            localStorage.setItem(USAGE_STORAGE_KEYS.date, today);
+            localStorage.setItem(USAGE_STORAGE_KEYS.chars, '0');
+            return 0;
+        }
+
+        return Number(localStorage.getItem(USAGE_STORAGE_KEYS.chars)) || 0;
+    }
+
+    /**
+     * Add characters to today's tracked usage and refresh the usage bar.
+     * @param {number} charCount - Characters to add to today's usage estimate.
+     * @returns {void}
+     */
+    trackUsage(charCount) {
+        const usedChars = this.getUsedChars() + charCount;
+        localStorage.setItem(USAGE_STORAGE_KEYS.chars, String(usedChars));
+        this.updateUsageDisplay();
+    }
+
+    /**
+     * Render the estimated daily quota usage bar from tracked usage.
+     * @returns {void}
+     */
+    updateUsageDisplay() {
+        const usedChars = this.getUsedChars();
+        const percentage = Math.min(100, Math.round((usedChars / MYMEMORY_DAILY_CHAR_LIMIT) * 100));
+
+        this.usageBarFill.style.width = `${percentage}%`;
+        this.usageBarFill.classList.toggle('bg-danger', percentage >= 100);
+        this.usageBarFill.classList.toggle('bg-warning', percentage >= 75 && percentage < 100);
+        this.usageBar.setAttribute('aria-valuenow', String(percentage));
+        this.usagePercentage.textContent = `${percentage}%`;
+    }
+
+    /**
+     * Detect MyMemory's quota-exhausted response, which still returns HTTP 200
+     * and responseStatus 200 but replaces the translation with a warning string.
+     * @param {object} data - Parsed MyMemory response body.
+     * @returns {boolean} True when the free daily quota has been exhausted.
+     */
+    isQuotaExceededResponse(data) {
+        return Boolean(data.quotaFinished) || /MYMEMORY WARNING/i.test(data.responseData?.translatedText || '');
+    }
+
+    /**
      * Validate input, use the cache when possible, or request a translation.
      * @returns {Promise<void>}
      */
@@ -352,15 +418,10 @@ class App {
         }
 
         try {
-            const params = new URLSearchParams({
-                client: 'gtx',
-                sl: sourceCode,
-                tl: targetCode,
-                dt: 't',
-                q: text
-            });
+            const langpair = `${sourceCode === 'auto' ? 'autodetect' : sourceCode}|${targetCode}`;
+            const params = new URLSearchParams({ q: text, langpair });
             const response = await fetch(
-                `https://translate.googleapis.com/translate_a/single?${params}`
+                `https://api.mymemory.translated.net/get?${params}`
             );
 
             if (!response.ok) {
@@ -368,20 +429,34 @@ class App {
             }
 
             const data = await response.json();
-            const translation = data[0].map((part) => part[0]).join('');
+
+            if (data.responseStatus !== 200 || !data.responseData?.translatedText) {
+                throw new Error('translationFailed');
+            }
+
+            if (this.isQuotaExceededResponse(data)) {
+                localStorage.setItem(USAGE_STORAGE_KEYS.chars, String(MYMEMORY_DAILY_CHAR_LIMIT));
+                this.updateUsageDisplay();
+                throw new Error('quotaExceeded');
+            }
+
+            const translation = data.responseData.translatedText;
             localStorage.setItem(TRANSLATION_STORAGE_KEYS.response, JSON.stringify({
                 text,
                 sourceCode,
                 targetCode,
                 response: translation
             }));
+            this.trackUsage(text.length);
             this.showTranslation(translation);
             this.statusLabel.textContent = '';
         } catch (error) {
             this.result.textContent = '';
             this.result.classList.remove('translation-loading');
             this.copyButton.disabled = true;
-            this.statusLabel.textContent = this.getMessage('translationFailedConnection');
+            this.statusLabel.textContent = error.message === 'quotaExceeded'
+                ? this.getMessage('translationQuotaExceeded')
+                : this.getMessage('translationFailedConnection');
         }
     }
 }

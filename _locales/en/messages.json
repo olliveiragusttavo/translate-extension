@@ -3,7 +3,7 @@
     "message": "Simple popup translator API"
   },
   "appDescription": {
-    "message": "Simply displays the Google Translate form in the extension popup."
+    "message": "Simply displays the MyMemory Translate form in the extension popup."
   },
   "textToTranslate": {
     "message": "Text to translate"
@@ -70,5 +70,20 @@
   },
   "translationFailedConnection": {
     "message": "Translation failed. Check your internet connection."
+  },
+  "translationQuotaExceeded": {
+    "message": "Daily free translation quota reached. Try again tomorrow."
+  },
+  "dailyUsageLabel": {
+    "message": "Estimated daily quota used"
+  },
+  "dailyUsageForecastNote": {
+    "message": "Forecast only, not the exact provider value."
+  },
+  "supportLabel": {
+    "message": "Support:"
+  },
+  "supportMyMemoryLink": {
+    "message": "MyMemory"
   }
 }

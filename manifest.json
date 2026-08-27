@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "default_locale": "en",
 
-  "description": "Simply displays the Google Translate form in the extension popup.",
+  "description": "Simply displays the MyMemory Translate form in the extension popup.",
 
   "icons": {
     "48": "assets/icon.png"
@@ -18,12 +18,8 @@
     }
   },
 
-  "background": {
-    "scripts": ["popup/popup.js"]
-  },
-
   "host_permissions": [
-    "https://translate.googleapis.com/*"
+    "https://api.mymemory.translated.net/*"
   ],
 
   "browser_specific_settings": {
@@ -33,12 +29,5 @@
         "required": ["none"]
       }
     }
-  },
-
-  "content_scripts": [
-    {
-      "matches": ["*://*.mozilla.org/*"],
-      "js": ["popup/popup.js"]
-    }
-  ]
+  }
 }

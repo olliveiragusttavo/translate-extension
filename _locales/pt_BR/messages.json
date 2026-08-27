@@ -3,7 +3,7 @@
     "message": "Tradutor"
   },
   "appDescription": {
-    "message": "Exibe o formulário do Google Tradutor no pop-up da extensão."
+    "message": "Exibe o formulário do MyMemory Tradutor no pop-up da extensão."
   },
   "textToTranslate": {
     "message": "Texto para traduzir"
@@ -70,5 +70,20 @@
   },
   "translationFailedConnection": {
     "message": "Falha na tradução. Verifique sua conexão com a internet."
+  },
+  "translationQuotaExceeded": {
+    "message": "Limite diário gratuito de tradução atingido. Tente novamente amanhã."
+  },
+  "dailyUsageLabel": {
+    "message": "Cota diária estimada usada"
+  },
+  "dailyUsageForecastNote": {
+    "message": "Apenas uma estimativa, não o valor exato do provedor."
+  },
+  "supportLabel": {
+    "message": "Apoie:"
+  },
+  "supportMyMemoryLink": {
+    "message": "MyMemory"
   }
 }

@@ -1,6 +1,6 @@
 # Translate extension
 
-Simply displays the Google Translate form in the extension's pop-up.
+Simply displays the MyMemory Translate form in the extension's pop-up.
 
 ## Why?
 
@@ -38,19 +38,15 @@ The extension includes the following interface capabilities:
 This project uses the following external libraries and services:
 
 - **Bootstrap CSS Framework**: Provides responsive design and UI components (bootstrap.min.css)
-- **Google Translate API**: Powers the translation functionality via `translate.googleapis.com`
+- **MyMemory Translation API**: Powers the translation functionality via `api.mymemory.translated.net`
 - **Browser Extension APIs**: Uses native browser i18n and clipboard APIs
 
 ## Privacy & Security
 
 - **No Data Collection**: This extension does not read, store, or transmit any data from web pages you visit
-- **Limited External Calls**: Only calls Google Translate API to perform translations—no other external APIs are used
+- **Limited External Calls**: Only calls the MyMemory Translation API to perform translations—no other external APIs are used
 - **No Background Activity**: The extension does not run any background processes or services
 - **Open Source**: All code is available on GitHub for full transparency and community review
-
-## Credits
-
-This extension was developed with assistance from GitHub Copilot.
 
 ## Repository
 
