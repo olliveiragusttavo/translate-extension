@@ -28,6 +28,9 @@ const USAGE_STORAGE_KEYS = {
 // The quota is tracked server-side per IP, not per browser, so this is only a local estimate.
 const MYMEMORY_DAILY_CHAR_LIMIT = 5000;
 
+// MyMemory rejects queries longer than 500 characters per request.
+const MYMEMORY_MAX_QUERY_CHARS = 500;
+
 const TRANSLATION_DELAY = 1000;
 const COPY_FEEDBACK_DELAY = 1000;
 
@@ -47,6 +50,7 @@ class App {
         this.usageBar = document.getElementById('usage-bar');
         this.usageBarFill = document.getElementById('usage-bar-fill');
         this.usagePercentage = document.getElementById('usage-percentage');
+        this.charCounter = document.getElementById('char-counter');
         this.translationTimeout = null;
         this.copyResetTimeout = null;
 
@@ -61,7 +65,9 @@ class App {
         this.setUpLocalization();
         this.setUpTheme();
         this.setUpLanguage();
+        this.sourceText.maxLength = MYMEMORY_MAX_QUERY_CHARS;
         this.restoreLastTranslation();
+        this.updateCharCounter();
         this.updateUsageDisplay();
         this.bindEvents();
     }
@@ -74,6 +80,7 @@ class App {
         this.sourceText.addEventListener('beforeinput', () => this.startTranslationFeedback());
         this.sourceText.addEventListener('input', () => {
             localStorage.setItem(TRANSLATION_STORAGE_KEYS.text, this.sourceText.value);
+            this.updateCharCounter();
             this.scheduleTranslation();
         });
         this.sourceLanguage.addEventListener('change', () => {
@@ -210,6 +217,17 @@ class App {
     }
 
     /**
+     * Render how many characters were typed against the per-request API limit.
+     * @returns {void}
+     */
+    updateCharCounter() {
+        const charCount = this.sourceText.value.length;
+        this.charCounter.textContent = `${charCount}/${MYMEMORY_MAX_QUERY_CHARS}`;
+        this.charCounter.classList.toggle('text-danger', charCount >= MYMEMORY_MAX_QUERY_CHARS);
+        this.charCounter.classList.toggle('text-secondary', charCount < MYMEMORY_MAX_QUERY_CHARS);
+    }
+
+    /**
      * Start the visual feedback shown while translation is pending.
      * @returns {void}
      */
@@ -234,6 +252,7 @@ class App {
     clearInput() {
         clearTimeout(this.translationTimeout);
         this.sourceText.value = '';
+        this.updateCharCounter();
         localStorage.removeItem(TRANSLATION_STORAGE_KEYS.text);
         localStorage.removeItem(TRANSLATION_STORAGE_KEYS.response);
         this.result.textContent = '';
@@ -254,7 +273,7 @@ class App {
             return;
         }
 
-        this.sourceText.value = savedText;
+        this.sourceText.value = savedText.slice(0, MYMEMORY_MAX_QUERY_CHARS);
 
         try {
             const cachedTranslation = JSON.parse(savedResponse);
