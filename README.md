@@ -1,6 +1,14 @@
-# Translate extension
+# Simple popup translator
 
-Simply displays the MyMemory Translate form in the extension's pop-up.
+An unofficial browser extension that translates text in its popup using the [MyMemory](https://mymemory.translated.net/) translation API. Not affiliated with MyMemory/Translated.
+
+## Screenshots
+
+| Light theme | Dark theme |
+| :---: | :---: |
+| <img src="docs/screenshots/popup-light.png" alt="Extension popup in light theme translating &quot;Hello! How are you today?&quot; to Portuguese" width="300"> | <img src="docs/screenshots/popup-dark.png" alt="Extension popup in dark theme translating &quot;Where is the nearest train station?&quot; from English to Spanish" width="300"> |
+
+The popup follows the system's light or dark theme automatically.
 
 ## Why?
 
@@ -15,7 +23,7 @@ This is a lightweight browser extension that provides quick access to translatio
 - **Simple UI**: Clean and intuitive interface for easy translation
 - **Language Swapping**: Quickly exchange source and target languages with one click
 - **Auto-Detection**: Automatically detect the language of your input text
-- **Translation Caching**: Recent translations are cached for faster retrieval
+- **Last Translation Saved**: Your last text and its translation are still there when you reopen the popup
 - **Copy to Clipboard**: Easily copy translated text with a single click
 - **Theme Support**: Respects your system's light/dark mode preference
 - **Multi-Language**: Full localization support for English, Spanish, and Portuguese
@@ -47,10 +55,14 @@ The extension icon (`assets/icon.svg`) is original artwork made for this project
 
 ## Privacy & Security
 
-- **No Data Collection**: This extension does not read, store, or transmit any data from web pages you visit
-- **Limited External Calls**: Only calls the MyMemory Translation API to perform translations—no other external APIs are used
+- **What is sent**: The text you type and the selected languages are sent to the MyMemory Translation API (`api.mymemory.translated.net`) to be translated. Nothing is sent while the text box is empty, and no other external service is called
+- **What stays on your device**: Your last selected languages, your last text and its translation, and the daily usage estimate are kept only in the browser's local storage
+- **No access to web pages**: The extension does not read, collect or modify the content of the pages you visit
+- **No tracking**: No analytics, advertising or user accounts
 - **No Background Activity**: The extension does not run any background processes or services
 - **Open Source**: All code is available on GitHub for full transparency and community review
+
+Avoid entering passwords or other sensitive information, since the text is processed by a third-party translation service. Read the full [Privacy Policy](PRIVACY.md).
 
 ## Repository
 

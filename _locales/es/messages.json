@@ -1,9 +1,9 @@
 {
   "appName": {
-    "message": "Traductor"
+    "message": "Traductor simple en ventana emergente"
   },
   "appDescription": {
-    "message": "Muestra el formulario de MyMemory Translate en la ventana emergente de la extensión."
+    "message": "Traductor no oficial en ventana emergente que usa la API de MyMemory. Sin afiliación con MyMemory/Translated."
   },
   "textToTranslate": {
     "message": "Texto para traducir"
