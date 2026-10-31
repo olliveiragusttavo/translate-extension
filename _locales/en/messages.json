@@ -1,9 +1,9 @@
 {
   "appName": {
-    "message": "Simple popup translator API"
+    "message": "Simple popup translator"
   },
   "appDescription": {
-    "message": "Simply displays the MyMemory Translate form in the extension popup."
+    "message": "Unofficial popup translator using the MyMemory API. Not affiliated with MyMemory/Translated."
   },
   "textToTranslate": {
     "message": "Text to translate"

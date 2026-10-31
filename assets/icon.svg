@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Original icon for this project (MIT License). Drawn from basic shapes only; no fonts or third-party artwork. -->
+  <!-- Back speech bubble: source language -->
+  <path d="M22 8h52a14 14 0 0 1 14 14v34a14 14 0 0 1-14 14H40L22 86V70a14 14 0 0 1-14-14V22A14 14 0 0 1 22 8z"
+        fill="#f97316"/>
+  <path d="M24 40 38 14 52 40M28.8 31h18.4" fill="none" stroke="#fff" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Front speech bubble: target language -->
+  <path d="M56 44h52a14 14 0 0 1 14 14v34a14 14 0 0 1-14 14v16l-18-16H56a14 14 0 0 1-14-14V58a14 14 0 0 1 14-14z"
+        fill="#0f766e" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M60 66h44m-10-10 10 10-10 10M104 86H60m10-10-10 10 10 10" fill="none" stroke="#fff" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
