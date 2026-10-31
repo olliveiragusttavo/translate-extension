@@ -41,6 +41,10 @@ This project uses the following external libraries and services:
 - **MyMemory Translation API**: Powers the translation functionality via `api.mymemory.translated.net`
 - **Browser Extension APIs**: Uses native browser i18n and clipboard APIs
 
+## Icon
+
+The extension icon (`assets/icon.svg`) is original artwork made for this project from basic geometric shapes, with no fonts or third-party images, and is distributed under the same MIT License as the code. The PNG files in `assets/icons/` are exported from that SVG at 16, 32, 48 and 128 px.
+
 ## Privacy & Security
 
 - **No Data Collection**: This extension does not read, store, or transmit any data from web pages you visit
